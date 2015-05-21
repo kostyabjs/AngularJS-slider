@@ -20,49 +20,61 @@
 
 <body ng-controller="MainCtrl">
 
+<!--Navigation panel-->
 <div class="btn">
     <input type="submit" class="styled-button" value="Play" ng-click="play()"/>
     <input type="submit" class="styled-button" value="Stop" ng-click="stop()"/>
+    <select ng-model="choice" ng-options="x as x.name for x in photos">
+        <option value="" disabled selected>Select your player to add</option>
+    </select>
+    <input type="submit" class="styled-button" value="Add chosen" ng-click="add()" ng-show="choice"/>
 </div>
 
-<h1>AngularJS slider</h1>
+<div class="left">
+    <h1>AngularJS slider</h1>
 
-<!-- slider container -->
-<div class="container slider">
+    <!--Shuffle button-->
+    <div class="btn">
+        <input type="submit" class="styled-button" value="Shuffle" ng-click="shuffle(viewPhotos.next)"/>
+    </div>
 
-    <!-- enumerate all photos -->
-    <img ng-repeat="photo in viewPhotos.next" class="slide" ng-swipe-right="rotate.next()" ng-swipe-left="rotate.prev()" ng-show="isActive.next($index)" ng-src="{{photo.src}}" />
+    <!-- slider container -->
+    <div class="container slider">
 
-    <!-- extra navigation controls -->
-    <ul class="nav">
-        <li ng-repeat="photo in viewPhotos.next" ng-class="{'active':isActive.next($index)}">
-            <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto.next($index);" />
-        </li>
-    </ul>
+        <!-- enumerate all photos -->
+        <img ng-repeat="photo in viewPhotos.next" class="slide" ng-swipe-right="rotate.next()" ng-swipe-left="rotate.prev()" ng-show="isActive.next($index)" ng-src="{{photo.src}}" />
 
+        <!-- extra navigation controls -->
+        <ul class="nav">
+            <li ng-repeat="photo in viewPhotos.next" ng-class="{'active':isActive.next($index)}">
+                <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto.next($index);" />
+            </li>
+        </ul>
+
+    </div>
 </div>
 
-<div class="btn">
-    <input type="submit" class="styled-button" value="Shuffle" ng-click="shuffle(viewPhotos.next)"/>
-</div>
+<div class="right">
+    <h1>AngularJS slider (reversed)</h1>
 
-<h1>AngularJS slider (reversed)</h1>
-<div class="container slider">
+    <!--Shuffle button-->
+    <div class="btn">
+        <input type="submit" class="styled-button" value="Shuffle" ng-click="shuffle(viewPhotos.prev)"/>
+    </div>
 
-    <!-- enumerate all photos -->
-    <img ng-repeat="photo in viewPhotos.prev" class="slide" ng-swipe-right="rotate.next()" ng-swipe-left="rotate.prev()" ng-show="isActive.prev($index)" ng-src="{{photo.src}}" />
+    <div class="container slider">
 
-    <!-- extra navigation controls -->
-    <ul class="nav">
-        <li ng-repeat="photo in viewPhotos.prev" ng-class="{'active':isActive.prev($index)}">
-            <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto.prev($index);" />
-        </li>
-    </ul>
+        <!-- enumerate all photos -->
+        <img ng-repeat="photo in viewPhotos.prev" class="slide" ng-swipe-right="rotate.next()" ng-swipe-left="rotate.prev()" ng-show="isActive.prev($index)" ng-src="{{photo.src}}" />
 
-</div>
+        <!-- extra navigation controls -->
+        <ul class="nav">
+            <li ng-repeat="photo in viewPhotos.prev" ng-class="{'active':isActive.prev($index)}">
+                <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto.prev($index);" />
+            </li>
+        </ul>
 
-<div class="btn">
-    <input type="submit" class="styled-button" value="Shuffle" ng-click="shuffle(viewPhotos.prev)"/>
+    </div>
 </div>
 
 </body>

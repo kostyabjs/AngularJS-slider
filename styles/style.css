@@ -2,11 +2,16 @@ h1 {
     text-align: center;
 }
 
-
-
-
 .btn {
     text-align: center;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
 }
 
 .styled-button {
